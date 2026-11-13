@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Attendance Tracker</title>
+  <meta name="description" content="Mark daily attendance, see class rates, and export records. Works offline in your browser.">
+  <link rel="icon" href="assets/icons/favicon.svg" type="image/svg+xml">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:wght@400;600;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <header class="top">
+    <div class="brand">
+      <img src="assets/icons/favicon.svg" alt="" width="40" height="40">
+      <h1>Attendance Tracker</h1>
+    </div>
+    <div class="rate" aria-live="polite">
+      <span class="rate-num" id="rateNum">0%</span>
+      <span class="rate-label">present today</span>
+      <div class="bar"><div class="bar-fill" id="barFill"></div></div>
+    </div>
+  </header>
+
+  <main>
+    <section class="panel controls" aria-label="Date and actions">
+      <label class="field">Date
+        <input type="date" id="dateInput">
+      </label>
+      <button type="button" id="markAll" class="btn">Mark all present</button>
+      <button type="button" id="exportBtn" class="btn">Export CSV</button>
+      <button type="button" id="resetBtn" class="btn danger">Clear all data</button>
+    </section>
+
+    <section class="stats" aria-label="Summary for selected date">
+      <div class="stat s-present"><b id="cPresent">0</b> Present</div>
+      <div class="stat s-absent"><b id="cAbsent">0</b> Absent</div>
+      <div class="stat s-late"><b id="cLate">0</b> Late</div>
+      <div class="stat"><b id="cUnmarked">0</b> Not marked</div>
+    </section>
+
+    <section class="panel" aria-label="Student register">
+      <form id="addForm" class="add">
+        <label for="nameInput" class="sr">Student name</label>
+        <input type="text" id="nameInput" placeholder="Student name" maxlength="40" autocomplete="off" required>
+        <button type="submit" class="btn primary">Add student</button>
+      </form>
+      <ul id="list" class="list"></ul>
+      <p id="empty" class="empty">No students yet. Type a name above and choose Add student.</p>
+    </section>
+  </main>
+
+  <footer>Data is saved in this browser only. Overall rate counts present and late as attended.</footer>
+  <script src="script.js"></script>
+</body>
+</html>
